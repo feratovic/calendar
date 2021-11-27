@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Head from 'next/head';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import styles from '../styles/Home.module.css';
 // import Swiper core and required modules
@@ -11,6 +11,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import {renderDays} from '../common/functions';
 import Month from '../components/month';
+import ServiceContext from '../context';
+import Side from '../components/side';
 
 export default function Home() {
   const months = [
@@ -91,20 +93,27 @@ export default function Home() {
   const week = ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'];
 
   return (
-    <Swiper
-      direction={'vertical'}
-      mousewheel={true}
-      className={styles.mySwiper}
-    >
-      {months && months.length > 0
-        ? months.map((item, i) => {
-            return (
-              <SwiperSlide key={i} className={styles.slide}>
-                <Month data={item} week={week} />
-              </SwiperSlide>
-            );
-          })
-        : null}
-    </Swiper>
+    <ServiceContext>
+      <Head>
+        <title>Kalendar</title>
+        <link rel="icon" href="/icon.ico" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Swiper
+        direction={'vertical'}
+        mousewheel={true}
+        className={styles.mySwiper}
+      >
+        {months && months.length > 0
+          ? months.map((item, i) => {
+              return (
+                <SwiperSlide key={i} className={styles.slide}>
+                  <Month data={item} week={week} />
+                </SwiperSlide>
+              );
+            })
+          : null}
+      </Swiper>
+    </ServiceContext>
   );
 }
