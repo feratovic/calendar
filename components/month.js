@@ -4,11 +4,16 @@ import {ServiceContext} from '../context';
 import styles from '../styles/Month.module.css';
 import Side from './side';
 
-export default function Month({data, week}) {
+export default function Month({data, week, toggleSwiper}) {
   const {active, toggleSideBar} = useContext(ServiceContext);
 
+  const toggle = (data, d) => {
+    toggleSideBar(data, d);
+    toggleSwiper(!active);
+  };
+
   return (
-    <>
+    <div className={styles.div}>
       <Image
         src={data.img || ''}
         alt={data.alt || ''}
@@ -39,7 +44,7 @@ export default function Month({data, week}) {
                         index === 34) &&
                       styles.fix_margin
                     }`}
-                    onClick={(e) => toggleSideBar(data, d)}
+                    onClick={(e) => toggle(data, d)}
                   >
                     {d}
                   </div>
@@ -49,6 +54,6 @@ export default function Month({data, week}) {
         </div>
       </div>
       <Side />
-    </>
+    </div>
   );
 }

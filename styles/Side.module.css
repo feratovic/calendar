@@ -1,9 +1,9 @@
 .side {
   width: 500px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.822);
+  max-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
   position: relative;
-  top: -5%;
+  top: 0;
   left: 68vw;
   z-index: 2;
   display: block;
@@ -21,6 +21,8 @@
   border-bottom: 1px solid white;
   margin: auto;
   padding-bottom: 20px;
+  font-weight: bold;
+  padding-top: 30px;
 }
 
 .header > p {
@@ -41,7 +43,9 @@
   background-color: white;
   color: black;
   cursor: pointer;
+  transition: 0.5s;
 }
+
 .d_none {
   animation: slideFromSideReverse 2s;
   transition: visibility 2s;
@@ -56,13 +60,53 @@
 
 .event > ul {
   list-style: none;
-}
-.event > ul > li {
-  padding: 15px;
-  border-bottom: 1px solid white;
-  width: 90%;
+  overflow-y: scroll;
+  height: 80vh;
 }
 
+.event > ul::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+.event > ul::-webkit-scrollbar-track {
+  background: #646464;
+}
+
+/* Handle */
+.event > ul::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+}
+
+/* Handle on hover */
+.event > ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.event > ul > li {
+  padding: 15px;
+  border-bottom: 1px solid rgb(177, 177, 177);
+  margin-right: 25px;
+}
+
+.event > ul > li:hover {
+  background-color: rgb(68, 68, 68);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.event > ul > li > a {
+}
+
+.event > ul > li > a > p {
+  margin-top: -10x;
+  font-size: smaller;
+  color: rgb(170, 170, 170);
+}
+
+.event > ul > li > a:hover {
+  text-decoration: none;
+}
 @media (max-width: 900px) {
   .side {
     width: 100vw !important;

@@ -8,7 +8,9 @@ function ServiceContextProvider(props) {
 
   const toggleSideBar = (month, day) => {
     if (!month || !day || data.day === day) {
-      setData({month: '', day: ''});
+      setTimeout(() => {
+        setData({month: '', day: ''});
+      }, [600]);
       setActive(false);
     } else {
       setData({month: month, day: day});

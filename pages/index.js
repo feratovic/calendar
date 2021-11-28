@@ -12,7 +12,7 @@ import 'swiper/css/pagination';
 import {renderDays} from '../common/functions';
 import Month from '../components/month';
 import ServiceContext from '../context';
-import Side from '../components/side';
+import {useState} from 'react';
 
 export default function Home() {
   const months = [
@@ -92,6 +92,12 @@ export default function Home() {
 
   const week = ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'];
 
+  const [disabled, setDisabled] = useState(false);
+
+  const myCallback = (prop) => {
+    setDisabled((prev) => prop);
+  };
+
   return (
     <ServiceContext>
       <Head>
@@ -101,14 +107,14 @@ export default function Home() {
       </Head>
       <Swiper
         direction={'vertical'}
-        mousewheel={true}
         className={styles.mySwiper}
+        noSwiping={disabled}
       >
         {months && months.length > 0
           ? months.map((item, i) => {
               return (
                 <SwiperSlide key={i} className={styles.slide}>
-                  <Month data={item} week={week} />
+                  <Month data={item} week={week} toggleSwiper={myCallback} />
                 </SwiperSlide>
               );
             })
